@@ -1,20 +1,14 @@
 package server.controller;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrint;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import server.messages.Message;
 import server.model.ChangeUser;
 import server.model.User;
@@ -23,13 +17,12 @@ import server.services.UserService;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@AutoConfigureMockMvc(print = MockMvcPrint.NONE)
-class AuthorizationControllerTest {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class AuthorizationControllerTemplateTest {
 
     /**
      * Valid user email, login and password
@@ -38,78 +31,11 @@ class AuthorizationControllerTest {
     private String email = "validEmail@test.ru";
     private String password = "validPassword@test.ru";
 
-    @Autowired
-    private TestRestTemplate testRestTemplate;
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
+    @MockBean
     private UserService userService;
 
-    @Test
-    @Transactional
-    void testRegister() throws Exception {
-        // register test user
-        mockMvc.perform(post("/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"login\": \"register\", \"email\": \"register@test.ru\", \"password\": \"12345\"}"))
-                .andExpect(status().isAccepted());
-    }
-
-    @Test
-    void testRegisterExistUser() throws Exception {
-        // Register user with the login that is already registered
-        mockMvc.perform(post("/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(String.format("{\"login\": \"%s\", \"email\": \"player@test.ru\", \"password\": \"12345\"}", login)))
-                .andExpect(status().isForbidden());
-
-        // Register user with the same password that is already registered
-        mockMvc.perform(post("/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(String.format("{\"login\": \"tester\", \"email\": \"%s\", \"password\": \"12345\"}", email)))
-                .andExpect(status().isForbidden());
-    }
-
-    @Test
-    void loginTest() throws Exception {
-        mockMvc.perform(post("/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(String.format("{\"email\": \"%s\", \"password\": \"%s\"}", login, password)))
-                .andExpect(status().isAccepted());
-        mockMvc.perform(post("/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(String.format("{\"email\": \"%s\", \"password\": \"%s\"}", email, password)))
-                .andExpect(status().isAccepted());
-    }
-
-    @Test
-    void loginTestUnsuccess() throws Exception {
-        // No info send
-        mockMvc.perform(post("/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": null, \"password\": null}"))
-                .andExpect(status().isForbidden());
-
-        // Unregistered email
-        mockMvc.perform(post("/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"unreg@test.ru\", \"password\": \"12345\"}"))
-                .andExpect(status().isBadRequest());
-
-        // Unregistered login
-        mockMvc.perform(post("/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"unreg\", \"password\": \"12345\"}"))
-                .andExpect(status().isBadRequest());
-
-        // No password specified
-        mockMvc.perform(post("/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(String.format("{\"email\": \"%s\", \"password\": null}", email)))
-                .andExpect(status().isForbidden());
-    }
+    @Autowired
+    private TestRestTemplate testRestTemplate;
 
     @Test
     void testMeRequiresLogin() {
@@ -118,9 +44,9 @@ class AuthorizationControllerTest {
     }
 
     private List<String> loginCookie() throws Exception {
-        mockMvc.perform(post("/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(String.format("{\"login\": \"%s\", \"email\": \"%s\", \"password\": \"%s\"}", login, email, password)));
+        Mockito.when(userService.isEmailRegistered(email)).thenReturn(true);
+        Mockito.when(userService.isLoginRegistered(login)).thenReturn(true);
+        //TODO other methods
         final UserAuth user = new UserAuth();
         user.setPassword(password);
         user.setLogin(login);
@@ -302,9 +228,4 @@ class AuthorizationControllerTest {
 
         assertEquals(HttpStatus.ACCEPTED, response.getStatusCode());
     }
-
-    @Test
-    void settings() {
-    }
-
 }
