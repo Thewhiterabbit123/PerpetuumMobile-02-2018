@@ -4,6 +4,7 @@ package server.services;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import server.model.User;
 import server.dao.UserDao;
