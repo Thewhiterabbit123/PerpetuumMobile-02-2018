@@ -1,3 +1,4 @@
+
 package server.mechanic;
 
 import server.mechanic.services.event.client.ClientEvent;
@@ -12,6 +13,6 @@ public interface GameMechanics {
 
     void removeUser(@NotNull Integer userId);
 
-    void gmStep(Integer threadNum, Integer threadCount);
+    void gmStep(long frameTime);
 
 }

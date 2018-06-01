@@ -23,15 +23,13 @@ import java.util.regex.Pattern;
 @RestController
 public class AliceService {
 
-    private final UserService userService;
     private final GameSessionService gameSessionService;
     private final GameMechanics gameMechanics;
 
     private HashMap<String, Integer> players = new HashMap<>();
 
     @Autowired
-    public AliceService(UserService userService, GameSessionService gameSessionService, GameMechanics gameMechanics) {
-        this.userService = userService;
+    public AliceService(GameSessionService gameSessionService, GameMechanics gameMechanics) {
         this.gameSessionService = gameSessionService;
         this.gameMechanics = gameMechanics;
     }

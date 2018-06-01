@@ -1,11 +1,8 @@
 package server.mechanic.services.event.client;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import server.mechanic.game.GameSession;
 import server.mechanic.game.GameUser;
-import server.mechanic.services.GameSessionService;
 import server.websocket.Message;
 import server.websocket.RemotePointService;
 
@@ -15,8 +12,6 @@ import java.util.*;
 
 @Service
 public class ClientEventService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ClientEventService.class);
 
     @NotNull
     private final RemotePointService remotePointService;
@@ -55,7 +50,7 @@ public class ClientEventService {
                         remotePointService.sendMessageToUser(messageToUser.getKey(), messageToUser.getValue());
                     }
                 } catch (IOException e) {
-                    LOGGER.error("Can't send messages to user through websocket");
+                    e.printStackTrace();
                 }
             }
         }
@@ -65,17 +60,7 @@ public class ClientEventService {
         events.remove(userProfileId);
     }
 
-    public void resetGarbage(GameSessionService gameSessionService) {
-        events.forEach((userId, event) -> {
-                    if (!gameSessionService.isPlaying(userId)) {
-                        events.remove(userId);
-                    }
-                }
-        );
-    }
-
-    public void resetForGameSession(GameSession gameSession) {
-        events.remove(gameSession.getFirst().getUserId());
-        events.remove(gameSession.getSecond().getUserId());
+    public void reset() {
+        events.clear();
     }
 }
