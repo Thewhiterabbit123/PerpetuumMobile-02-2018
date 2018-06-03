@@ -1,0 +1,121 @@
+{
+    "countX": 8,
+    "countY": 5,
+    "stars3": 50000,
+    "stars2": 70000,
+    "cells": [{
+        "x": 1,
+        "y": 0,
+        "fixed": false,
+        "colour": "#B5D6E6"
+    },
+    {
+        "x": 1,
+        "y": 1,
+        "fixed": false,
+        "colour": "#C4D2D9"
+    },
+    {
+        "x": 0,
+        "y": 2,
+        "fixed": false,
+        "colour": "#D9DDC8"
+    },
+    {
+        "x": 1,
+        "y": 2,
+        "fixed": false,
+        "colour": "#D1CCCB"
+    },
+    {
+        "x": 1,
+        "y": 3,
+        "fixed": false,
+        "colour": "#DAC6B9"
+    },
+    {
+        "x": 2,
+        "y": 2,
+        "fixed": false,
+        "colour": "#C7BBCD"
+    },
+    {
+        "x": 3,
+        "y": 2,
+        "fixed": false,
+        "colour": "#BCA4CF"
+    },
+    {
+        "x": 4,
+        "y": 2,
+        "fixed": false,
+        "colour": "#B18CD1"
+    },
+	{
+        "x": 5,
+        "y": 2,
+        "fixed": false,
+        "colour": "#A172D1"
+    },
+	{
+        "x": 5,
+        "y": 4,
+        "fixed": true,
+        "colour": "#77AAFF"
+    },
+	{
+        "x": 5,
+        "y": 3,
+        "fixed": false,
+        "colour": "#948FEA"
+    },
+    {
+        "x": 6,
+        "y": 2,
+        "fixed": false,
+        "colour": "#8F58D1"
+    },
+    {
+        "x": 5,
+        "y": 1,
+        "fixed": false,
+        "colour": "#A753AF"
+    },
+    {
+        "x": 3,
+        "y": 0,
+        "fixed": false,
+        "colour": "#C93F7B"
+    },
+    {
+        "x": 4,
+        "y": 0,
+        "fixed": false,
+        "colour": "#BA3782"
+    },
+    {
+        "x": 5,
+        "y": 0,
+        "fixed": false,
+        "colour": "#A73087"
+    },
+    {
+        "x": 6,
+        "y": 0,
+        "fixed": false,
+        "colour": "#922B8C"
+    },
+    {
+        "x": 7,
+        "y": 0,
+        "fixed": true,
+        "colour": "#782591"
+    },
+    {
+         "x": 1,
+         "y": 4,
+         "fixed": true,
+         "colour": "#ebbb87"
+    }
+	]
+}

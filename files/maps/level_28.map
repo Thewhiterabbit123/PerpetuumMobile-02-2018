@@ -1,0 +1,127 @@
+{
+    "countX": 9,
+    "countY": 4,
+    "stars3": 50000,
+    "stars2": 70000,
+    "cells": [{
+        "x": 0,
+        "y": 0,
+        "fixed": false,
+        "colour": "#C5C24C"
+    },
+    {
+        "x": 0,
+        "y": 1,
+        "fixed": false,
+        "colour": "#BAC982"
+    },
+    {
+        "x": 0,
+        "y": 2,
+        "fixed": false,
+        "colour": "#A7D0B4"
+    },
+    {
+        "x": 0,
+        "y": 3,
+        "fixed": true,
+        "colour": "#84D7D9"
+    },
+    {
+        "x": 1,
+        "y": 0,
+        "fixed": false,
+        "colour": "#ACA946"
+    },
+    {
+        "x": 2,
+        "y": 0,
+        "fixed": false,
+        "colour": "#8E8C3F"
+    },
+    {
+        "x": 3,
+        "y": 0,
+        "fixed": true,
+        "colour": "#6E6D38"
+    },
+    {
+        "x": 3,
+        "y": 1,
+        "fixed": false,
+        "colour": "#67543A"
+    },
+	{
+        "x": 3,
+        "y": 2,
+        "fixed": false,
+        "colour": "#5E403C"
+    },
+	{
+        "x": 3,
+        "y": 3,
+        "fixed": true,
+        "colour": "#542B3B"
+    },
+	{
+        "x": 4,
+        "y": 1,
+        "fixed": false,
+        "colour": "#80644C"
+    },
+    {
+        "x": 5,
+        "y": 1,
+        "fixed": false,
+        "colour": "#9A725D"
+    },
+    {
+        "x": 6,
+        "y": 1,
+        "fixed": false,
+        "colour": "#B38273"
+    },
+    {
+        "x": 7,
+        "y": 1,
+        "fixed": false,
+        "colour": "#C59189"
+    },
+    {
+        "x": 9,
+        "y": 1,
+        "fixed": true,
+        "colour": "#D7A09F"
+    },
+    {
+        "x": 4,
+        "y": 3,
+        "fixed": false,
+        "colour": "#70354D"
+    },
+    {
+        "x": 5,
+        "y": 3,
+        "fixed": false,
+        "colour": "#903F5E"
+    },
+    {
+        "x": 6,
+        "y": 3,
+        "fixed": false,
+        "colour": "#AF4873"
+    },
+	{
+        "x": 7,
+        "y": 3,
+        "fixed": false,
+        "colour": "#C65389"
+    },
+	{
+        "x": 8,
+        "y": 3,
+        "fixed": false,
+        "colour": "#DC5EA1"
+    }
+	]
+}
